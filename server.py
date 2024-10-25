@@ -163,7 +163,7 @@ async def get_next_question(current_link_id: str = None):
         current_link_id = next_link_id
 
         # If the item is a group, return it directly without condition checks
-        if next_item["type"] == "group" and next_item["required"] is False:
+        if next_item["type"] == "group":
             return JSONResponse(content=next_item)
 
         # Skip items that do not meet the enableWhen condition if they are not a group
