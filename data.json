@@ -1,0 +1,3445 @@
+{
+    "resourceType": "Questionnaire",
+    "url": "http://hl7.org/fhir/Questionnaire/Pflegeanamnese",
+    "identifier": [
+        {
+            "use": "official",
+            "system": "urn:UMOID:",
+            "value": "Pflegeanamnese"
+        }
+    ],
+    "version": "1.2",
+    "title": "Pflegeanamnese",
+    "status": "draft",
+    "subjectType": ["Patient"],
+    "date": "2020-08-31",
+    "publisher": "IBM",
+    "purpose": "Abbildung der Fragen des Pflegeanamnesebogens des UMs",
+    "item": [
+        {
+            "linkId": "0",
+            "text": "Personalien",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "0.1",
+                    "text": "Wie können wir Sie erreichen?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "0.1.1",
+                            "text": "Telefon:",
+                            "type": "integer",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.2",
+                    "text": "Was ist Ihr Beruf?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "0.2.1",
+                            "text": "Ehemaliger:",
+                            "type": "string",
+                            "required": false
+                        },
+                        {
+                            "linkId": "0.2.2",
+                            "text": "Ausgeübter:",
+                            "type": "string",
+                            "required": false
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.3",
+                    "text": "Wie ist Ihr Familienstand?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ledig"
+                        },
+                        {
+                            "valueString": "02# Verheiratet"
+                        },
+                        {
+                            "valueString": "03# Verwitwet"
+                        },
+                        {
+                            "valueString": "04# Geschieden"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.4",
+                    "text": "Wie war die häusliche Versorgung vor dem Krankenhausaufenthalt?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Selbstständig"
+                        },
+                        {
+                            "valueString": "02# Durch Angehörige"
+                        },
+                        {
+                            "valueString": "03# Ohne festen Wohnsitz"
+                        },
+                        {
+                            "valueString": "04# Pflegeheim"
+                        },
+                        {
+                            "valueString": "05# Betreutes Wohnen"
+                        },
+                        {
+                            "valueString": "06# Ambulanter Pflegedienst"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.5",
+                    "text": "Wie lautet die Adresse des ambulanten Pflegedienstes?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "0.4",
+                            "operator": "=",
+                            "answerString": "06# Ambulanter Pflegedienst"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "0.5.1",
+                            "text": "Straße:",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.4",
+                                    "operator": "=",
+                                    "answerString": "06# Ambulanter Pflegedienst"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "0.5.2",
+                            "text": "Postleitzahl:",
+                            "type": "integer",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.4",
+                                    "operator": "=",
+                                    "answerString": "06# Ambulanter Pflegedienst"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "0.5.3",
+                            "text": "Ort:",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.4",
+                                    "operator": "=",
+                                    "answerString": "06# Ambulanter Pflegedienst"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "0.5.4",
+                            "text": "Telefonnummer:",
+                            "type": "integer",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.4",
+                                    "operator": "=",
+                                    "answerString": "06# Ambulanter Pflegedienst"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.6",
+                    "text": "Haben Sie einen gesetzlichen Betreuer oder eine Vorsorgevollmacht? (Wenn ja, dann bringen Sie bitte eine Kopie für die Akten mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "0.6.1",
+                            "text": "Betreuung/Vorsorgevollmacht durch",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.7",
+                    "text": "Haben Sie eine Patientenverfügung? (Wenn ja, dann bringen Sie bitte eine Kopie für die Akten mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.8",
+                    "text": "Wurden Sie in einen Pflegegrad eingestuft?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Nein"
+                        },
+                        {
+                            "valueString": "02# Ja"
+                        },
+                        {
+                            "valueString": "03# Beantragt"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "0.8.1",
+                            "text": "Welcher Pflegegrad ist vorhanden?",
+                            "type": "choice",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "0.8",
+                                    "operator": "=",
+                                    "answerString": "02# Ja"
+                                }
+                            ],
+                            "answerOption": [
+                                {
+                                    "valueString": "01# 1"
+                                },
+                                {
+                                    "valueString": "02# 2"
+                                },
+                                {
+                                    "valueString": "03# 3"
+                                },
+                                {
+                                    "valueString": "04# 4"
+                                },
+                                {
+                                    "valueString": "05# 5"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.9",
+                    "text": "Wer soll im Notfall verständigt werden?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "0.9.1",
+                            "text": "Nachname:",
+                            "type": "string",
+                            "required": true
+                        },
+                        {
+                            "linkId": "0.9.2",
+                            "text": "Vorname:",
+                            "type": "string",
+                            "required": true
+                        },
+                        {
+                            "linkId": "0.9.3",
+                            "text": "Verwandschaftsgrad:",
+                            "type": "string",
+                            "required": true
+                        },
+                        {
+                            "linkId": "0.9.4",
+                            "text": "Telefonnummer:",
+                            "type": "integer",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "1",
+            "text": "Bewegen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "1.1",
+                    "text": "Haben Sie körperliche oder funktionelle Einschränkungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "1.1.1",
+                            "text": "Welche Einschränkungen haben Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "1.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "1.1.1.1",
+                                    "text": "Lähmungen (Plegien)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.2",
+                                    "text": "Sensibilitätsstörungen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.3",
+                                    "text": "Verändertes Gangbild",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.4",
+                                    "text": "Schwächen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.5",
+                                    "text": "Amputationen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.6",
+                                    "text": "Versteifungen (Kontrakturen)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.7",
+                                    "text": "Erschlaffungen (Paresen)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.1.1.8",
+                                    "text": "Krämpfe (Spastiken)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.2",
+                    "text": "Wo haben Sie diese Einschränkungen?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "1.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.3",
+                    "text": "Benutzen Sie Hilfsmittel? (Wenn ja, dann bringen Sie diese bitte nach Möglichkeit mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "1.3.1",
+                            "text": "Welche Hilfsmittel nutzen Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "1.3",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "1.3.1.1",
+                                    "text": "Gehstock",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.3.1.2",
+                                    "text": "Rollator",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.3.1.3",
+                                    "text": "Unterarmgestützen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.3.1.4",
+                                    "text": "Rollstuhl",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.3.1.5",
+                                    "text": "Orthesen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.3.1.6",
+                                    "text": "Prothesen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.4",
+                    "text": "Sind Sie in letzter Zeit gestürzt?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        },
+                        {
+                            "valueString": "03# Beinahe"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.5",
+                    "text": "Wann sind Sie gestürzt?",
+                    "type": "choice",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "1.4",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        },
+                        {
+                            "question": "1.4",
+                            "operator": "=",
+                            "answerString": "03# Beinahe"
+                        }
+                    ],
+                    "enableBehavior": "any",
+                    "answerOption": [
+                        {
+                            "valueString": "Gestern"
+                        },
+                        {
+                            "valueString": "Letzte Woche"
+                        },
+                        {
+                            "valueString": "Letzten Monat"
+                        },
+                        {
+                            "valueString": "In den letzten 3 Monaten"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.6",
+                    "text": "Haben Sie sich bei Ihrem Sturz verletzt?",
+                    "type": "choice",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "1.4",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.7",
+                    "text": "Wo haben Sie sich verletzt?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "1.6",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "1.8",
+                    "text": "Haben Sie Gleichgewichtsstörungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "1.8.1",
+                            "text": "Welche?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "1.8",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "1.8.1.1",
+                                    "text": "Schwindel",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.8",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "1.8.1.2",
+                                    "text": "Fallneigung",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "1.8",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "2",
+            "text": "Kommunikation",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "2.1",
+                    "text": "Haben Sie körperliche oder funktionelle Einschränkungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "2.1.1",
+                            "text": "Was für Einschränkungen haben Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "2.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "2.1.1.1",
+                                    "text": "Sehschwäche",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.1.1.1.1",
+                                            "text": "Blind",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.1",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "linkId": "2.1.1.1.2",
+                                            "text": "Auf welcher Seite haben Sie diese Einschränkungen?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.1",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "2.1.1.1.2.1",
+                                                    "text": "Links",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.1.1.1",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "2.1.1.1.2.2",
+                                                    "text": "Rechts",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.1.1.1",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.1.1.2",
+                                    "text": "Hörschwäche",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.1.1.2.1",
+                                            "text": "Taub",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "linkId": "2.1.1.2.2",
+                                            "text": "Auf welcher Seite haben Sie diese Einschränkungen?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "2.1.1.2.2.1",
+                                                    "text": "Links",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.1.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "2.1.1.2.2.2",
+                                                    "text": "Rechts",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.1.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.1.1.3",
+                                    "text": "Sprachstörungen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.1.1.3.1",
+                                            "text": "Stottern",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.3",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "linkId": "2.1.1.3.2",
+                                            "text": "Stumm",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.3",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.1.1.4",
+                                    "text": "Wortfindungsstörungen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.1.1.4.1",
+                                            "text": "Verwaschene Sprache",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.4",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "linkId": "2.1.1.4.2",
+                                            "text": "Aphasie",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.4",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.2",
+                    "text": "Benutzen Sie Hilfsmittel (Wenn ja, dann bringen Sie diese bitte nach Möglichkeit mit)?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "2.2.1",
+                            "text": "Welche Hilfsmittel nutzen Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "2.2",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "2.2.1.1",
+                                    "text": "Brille",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.2.1.2",
+                                    "text": "Hörgerät",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.2.1.2.1",
+                                            "text": "Auf welcher Seite?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.2.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "2.2.1.2.1.1",
+                                                    "text": "Links",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.2.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "2.2.1.2.1.2",
+                                                    "text": "Rechts",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.2.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.2.1.3",
+                                    "text": "Augenprothese",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "2.2.1.3.1",
+                                            "text": "Auf welcher Seite?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.2.1.3",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "2.2.1.3.1.1",
+                                                    "text": "Links",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.2.1.3",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "2.2.1.3.1.2",
+                                                    "text": "Rechts",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "2.2.1.3",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "2.2.1.4",
+                                    "text": "Kontaktlinsen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "2.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.3",
+                    "text": "Sind Sie in der deutschen Sprache kommunikationsfähig?",
+                    "type": "choice",
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "2.3.1",
+                            "text": "Dolmetscher erforderlich?",
+                            "type": "choice",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "2.3",
+                                    "operator": "=",
+                                    "answerString": "02# Nein"
+                                }
+                            ],
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.4",
+                    "text": "In welcher Sprache ist ein Dolmetscher erforderlich?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "2.3.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "2.4.1",
+                            "text": "Sprache",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "2.3.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Schlafen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "3.1",
+                    "text": "Haben Sie Einschlaf- oder Durchschlafprobleme?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "3.1.1",
+                            "text": "Welche?",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "3.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "3.1.2",
+                            "text": "Haben Sie schlafbezogene Atmungsstörungen (Schlafapnoe)?",
+                            "type": "choice",
+                            "required": true,
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ],
+                            "enableWhen": [
+                                {
+                                    "question": "3.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "3.1.3",
+                            "text": "Nutzen Sie ein CPAP (Beatmungsgerät)?",
+                            "type": "choice",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "3.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "3.1.3.1",
+                                    "text": "Handhabung selbstständig?",
+                                    "type": "choice",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "3.1.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "answerOption": [
+                                        {
+                                            "valueString": "01# Ja"
+                                        },
+                                        {
+                                            "valueString": "02# Nein"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Körperpflege",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "4.1",
+                    "text": "Benötigen Sie Unterstützung bei der Körperpflege/beim Anziehen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "4.1.1",
+                            "text": "Welche Art von Unterstützung brauchen Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "4.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "4.1.1.1",
+                                    "text": "Hilfestellung",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "4.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "4.1.1.2",
+                                    "text": "Vollständige Übernahme",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "4.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "4.1.1.3",
+                                    "text": "Kompressionsstrümpfe",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "4.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.2",
+                    "text": "Wie ist Ihr Hauttyp?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "4.2.1",
+                            "text": "Normal",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "4.2.2",
+                            "text": "Trocken",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "4.2.3",
+                            "text": "Feucht",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "4.2.4",
+                            "text": "Fettig",
+                            "type": "boolean",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.3",
+                    "text": "Haben Sie speziellen Pflegemittel? (Wenn ja, dann bringen Sie diese bitte nach Möglichkeit mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "4.3.1",
+                            "text": "Welche?",
+                            "type": "string",
+                            "enableWhen": [
+                                {
+                                    "question": "4.3",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.4",
+                    "text": "Ist Ihre Haut intakt?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "4.4.1",
+                            "text": "Inwiefern ist Ihre Haut nicht intakt?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "4.4",
+                                    "operator": "=",
+                                    "answerString": "02# Nein"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "4.4.1.1",
+                                    "text": "Wunde",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "4.4",
+                                            "operator": "=",
+                                            "answerString": "02# Nein"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "4.4.1.2",
+                                    "text": "Druckgeschwür",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "4.4",
+                                            "operator": "=",
+                                            "answerString": "02# Nein"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.5",
+                    "text": "Haben Sie Hautveränderungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.6",
+                    "text": "Welche Hautveränderungen haben Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "4.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.7",
+                    "text": "Wo haben Sie diese Hautveränderungen?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "4.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Atmung",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "5.1",
+                    "text": "Haben Sie Atembeschwerden (Sollten Sie Dosieraerosole zur Linderung Ihrer Beschwerden verwenden, bringen Sie diese bitte mit)?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.2",
+                    "text": "Welche Atembeschwerden haben Sie?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "5.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "5.2.1",
+                            "text": "Husten",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.2.2",
+                            "text": "Auswurf",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.2.3",
+                            "text": "Andere",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "5.2.3.1",
+                                    "text": "Welche andere Atembeschwerden haben Sie?",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "5.2.3",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.3",
+                    "text": "Wann haben Sie diese Beschwerden?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "5.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "5.3.1",
+                            "text": "in Ruhe",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.3.2",
+                            "text": "bei Belastung",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.4",
+                    "text": "Haben Sie einen Luftröhrenschnitt (Tracheostoma)?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "5.4.1",
+                            "text": "Sprechkanüle?",
+                            "type": "choice",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.4",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.5",
+                    "text": "Rauchen Sie?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.6",
+                    "text": "Was rauchen Sie?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "5.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "5.6.1",
+                            "text": "Zigaretten",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.5",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.6.2",
+                            "text": "Zigarren",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.5",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.6.3",
+                            "text": "E-Zigarette",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.5",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.6.4",
+                            "text": "Pfeife",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.5",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "5.6.5",
+                            "text": "Andere",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "5.5",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "5.6.5.1",
+                                    "text": "Was genau rauchen Sie?",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "5.6.5",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "5.7",
+                    "text": "Wieviel rauchen Sie?",
+                    "type": "choice",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "5.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "answerOption": [
+                        {
+                            "valueString": "durchschnittlich weniger als eine am Tag"
+                        },
+                        {
+                            "valueString": "regelmäßig eine bis sechs am Tag"
+                        },
+                        {
+                            "valueString": "regelmäßig mehr als sechs am Tag"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "6",
+            "text": "Ernährung",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "6.1",
+                    "text": "Benötigen Sie Hilfe bei der Nahrungsaufnahme?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.1.1",
+                            "text": "Welche Hilfe benötigen Sie?",
+                            "type": "choice",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Hilfe beim Richten"
+                                },
+                                {
+                                    "valueString": "02# Anreichen durch Pflegepersonal"
+                                },
+                                {
+                                    "valueString": "03# Unterstützung durch Pflegepersonal"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.2",
+                    "text": "Haben Sie eine Zahnprothese?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.2.1",
+                            "text": "Welcher Art?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.2",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "6.2.1.1",
+                                    "text": "Vollprothese",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "6.2.1.1.1",
+                                            "text": "Wo haben Sie die Vollprothese?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "6.2.1.1",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "6.2.1.1.1.1",
+                                                    "text": "oben",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "6.2.1.1",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "6.2.1.1.1.2",
+                                                    "text": "unten",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "6.2.1.1",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "6.2.1.2",
+                                    "text": "Teilprothese",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "6.2.1.2.1",
+                                            "text": "Wo haben Sie die Teilprothese?",
+                                            "type": "group",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "6.2.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ],
+                                            "item": [
+                                                {
+                                                    "linkId": "6.2.1.2.1.1",
+                                                    "text": "oben",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "6.2.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "linkId": "6.2.1.2.1.2",
+                                                    "text": "unten",
+                                                    "type": "boolean",
+                                                    "required": true,
+                                                    "enableWhen": [
+                                                        {
+                                                            "question": "6.2.1.2",
+                                                            "operator": "=",
+                                                            "answerBoolean": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.3",
+                    "text": "Ist Ihre Mundschleimhaut intakt?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.3.1",
+                            "text": "Wie ist Ihre Mundschleimhaut?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.3",
+                                    "operator": "=",
+                                    "answerString": "02# Nein"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "6.3.1.1",
+                                    "text": "trocken",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.3",
+                                            "operator": "=",
+                                            "answerString": "02# Nein"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "6.3.1.2",
+                                    "text": "entzündet",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.3",
+                                            "operator": "=",
+                                            "answerString": "02# Nein"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.4",
+                    "text": "An welche Kostformen/Diäten halten Sie sich?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "6.4.1",
+                            "text": "Vollkost",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "6.4.2",
+                            "text": "Andere",
+                            "type": "boolean",
+                            "required": true,
+                            "item": [
+                                {
+                                    "linkId": "6.4.2.1",
+                                    "text": "Welche?",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.4.2",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.5",
+                    "text": "Haben Sie Essenswünsche?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "6.5.1",
+                            "text": "ohne Schweinefleisch",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "6.5.2",
+                            "text": "ohne Fisch",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "6.5.3",
+                            "text": "vegetarisch",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "6.5.4",
+                            "text": "Sonstige",
+                            "type": "boolean",
+                            "required": true,
+                            "item": [
+                                {
+                                    "linkId": "6.5.4.1",
+                                    "text": "Sonstige Essenswünsche",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.5.4",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "6.5.5",
+                            "text": "nein",
+                            "type": "boolean",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.6",
+                    "text": "Haben Sie Lebensmittelunverträglichkeiten?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.6.1",
+                            "text": "Welche?",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.7",
+                    "text": "Besteht bei Ihnen eine angeborene Stoffwechselerkrankung?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.7.1",
+                            "text": "Welche Stoffwechselerkrankung besteht?",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.7",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.8",
+                    "text": "Besteht bei Ihnen eine Mukoviszidose?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.9",
+                    "text": "Wie sind Ihre Trinkgewohnheiten?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "6.9.1",
+                            "text": "Liter/Tag",
+                            "type": "decimal",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.10",
+                    "text": "Haben Sie eine Trinkmengenbeschränkung?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.10.1",
+                            "text": "max. Trinkmenge in Liter/Tag",
+                            "type": "decimal",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "6.10",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.11",
+                    "text": "Trinken Sie regelmäßig Alkohol (z.B. auch Melissengeist, Pepsinwein)?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "6.11.1",
+                            "text": "Wieviel Alkohol trinken Sie?",
+                            "type": "group",
+                            "required": true,
+                            "item": [
+                                {
+                                    "linkId": "6.11.1.1",
+                                    "text": "Liter/Tag",
+                                    "type": "decimal",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "6.11",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "enableWhen": [
+                                {
+                                    "question": "6.11",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.12",
+                    "text": "Wie oft trinken Sie Alkohol?",
+                    "type": "choice",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "6.11",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "answerOption": [
+                        {
+                            "valueString": "1 mal im Monat oder seltener"
+                        },
+                        {
+                            "valueString": "2-4 mal im Monat"
+                        },
+                        {
+                            "valueString": "2-3 mal pro Woche"
+                        },
+                        {
+                            "valueString": "4 mal oder öfter pro Woche"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.13",
+                    "text": "Haben Sie Schluckstörungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.14",
+                    "text": "Haben Sie eine",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "6.14.1",
+                            "text": "Ernährungssonde über der Bauchdecke (PEG)? (Wenn ja, dann bringen Sie bitte Ihren Ernährungsplan mit)",
+                            "type": "choice",
+                            "required": true,
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "6.14.2",
+                            "text": "Magensonde?",
+                            "type": "choice",
+                            "required": true,
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "6.14.3",
+                            "text": "Ernährungsplan? (Wenn ja, dann bringen Sie diesen bitte zum Aufnahmetermin mit)",
+                            "type": "choice",
+                            "required": true,
+                            "answerOption": [
+                                {
+                                    "valueString": "01# Ja"
+                                },
+                                {
+                                    "valueString": "02# Nein"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.15",
+                    "text": "Haben Sie in den letzten 3 Monaten unbeabsichtigt an Gewicht verloren?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        },
+                        {
+                            "valueString": "03# Einschätzung nicht möglich"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "6.16",
+                    "text": "Welche Körpergröße haben Sie?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "6.16.1",
+                            "text": "cm",
+                            "type": "integer",
+                            "required": true
+                        },
+                        {
+                            "linkId": "6.16.2",
+                            "text": "Welches Gewicht haben Sie?",
+                            "type": "group",
+                            "required": true,
+                            "item": [
+                                {
+                                    "linkId": "6.16.2.1",
+                                    "text": "kg",
+                                    "type": "decimal",
+                                    "required": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "7",
+            "text": "Ausscheidung",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "7.1",
+                    "text": "Haben Sie Probleme bei der Urinausscheidung?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.1.1",
+                            "text": "Welche Probleme haben Sie?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.1.1.1",
+                                    "text": "vermehrtes nächtliches Wasserlassen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.1.1.2",
+                                    "text": "häufiges Wasserlassen geringer Mengen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.1.1.3",
+                                    "text": "schmerzhaftes Wasserlassen",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.1.1.4",
+                                    "text": "Harninkontinenz",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.1.1.5",
+                                    "text": "Dranginkontinenz",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.1",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.2",
+                    "text": "Haben Sie Besonderheiten bei der Urinausscheidung?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.2.1",
+                            "text": "Welche Besonderheiten?",
+                            "type": "group",
+                            "enableWhen": [
+                                {
+                                    "question": "7.2",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.2.1.1",
+                                    "text": "Dialyse",
+                                    "type": "boolean",
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "7.2.1.1.1",
+                                            "text": "Restharn in ml/24h",
+                                            "type": "integer",
+                                            "enableWhen": [
+                                                {
+                                                    "question": "7.2.1.1",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.2.1.2",
+                                    "text": "Einmalkatheterismus",
+                                    "type": "boolean",
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.2",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "linkId": "7.2.1.2.1",
+                                            "text": "Häufigkeit täglich",
+                                            "type": "string",
+                                            "enableWhen": [
+                                                {
+                                                    "question": "7.2.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "linkId": "7.2.1.2.2",
+                                            "text": "Selbstständig",
+                                            "type": "choice",
+                                            "answerOption": [
+                                                {
+                                                    "valueString": "01# Ja"
+                                                },
+                                                {
+                                                    "valueString": "02# Nein"
+                                                }
+                                            ],
+                                            "enableWhen": [
+                                                {
+                                                    "question": "7.2.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.3",
+                    "text": "Haben Sie ein Urinableitungssystem?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.3.1",
+                            "text": "Welches Urinableitungssystem?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.3",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.3.1.1",
+                                    "text": "Urostoma",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.3.1.2",
+                                    "text": "transurethraler Blasenkatheter",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.3.1.3",
+                                    "text": "Cystofix",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.3",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.4",
+                    "text": "Haben Sie Probleme bei der Stuhlausscheidung?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.4.1",
+                            "text": "Welche Probleme?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.4",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.4.1.1",
+                                    "text": "Neigung zu Durchfall (Diarrhoe)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.4",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.4.1.2",
+                                    "text": "Neigung zu Verstopfung (Obstipation)",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.4",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.4.1.3",
+                                    "text": "Stuhlinkontinenz",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.4",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.5",
+                    "text": "Letzter Stuhlgang am",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "7.5.1",
+                            "text": "dd.mm.yyyy",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.6",
+                    "text": "Nehmen Sie regelmäßig Abführmittel?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.7",
+                    "text": "Welche Abführmittel nehmen Sie?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "7.6",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.7.1",
+                            "text": "Dulcolax",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.2",
+                            "text": "Flosamen",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.3",
+                            "text": "Glaubersalz",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.4",
+                            "text": "Lactulose",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.5",
+                            "text": "Laxans",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.6",
+                            "text": "Macrogol",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.7",
+                            "text": "Microlax",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.8",
+                            "text": "Movicol",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "7.7.9",
+                            "text": "Andere",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.6",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.7.9.1",
+                                    "text": "Welche?",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.7.9",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.8",
+                    "text": "Wie oft nehmen Sie diese Abführmittel?",
+                    "type": "choice",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "7.6",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "answerOption": [
+                        {
+                            "valueString": "1 mal im Monat oder seltener"
+                        },
+                        {
+                            "valueString": "2-4 mal im Monat"
+                        },
+                        {
+                            "valueString": "2-3 mal pro Woche"
+                        },
+                        {
+                            "valueString": "4 mal oder öfter pro Woche"
+                        },
+                        {
+                            "valueString": "Täglich"
+                        },
+                        {
+                            "valueString": "Mehrmals täglich"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.9",
+                    "text": "Haben Sie ein Stuhlableitungssystem?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "7.9.1",
+                            "text": "Welches Stuhlableitungssystem?",
+                            "type": "group",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "7.9",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "7.9.1.1",
+                                    "text": "Colostoma",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.9",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "linkId": "7.9.1.2",
+                                    "text": "Ileostoma",
+                                    "type": "boolean",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "7.9",
+                                            "operator": "=",
+                                            "answerString": "01# Ja"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "8",
+            "text": "Schmerzen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "8.1",
+                    "text": "Haben Sie Schmerzen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "8.2",
+                    "text": "Schmerzskala (0 = kein Schmerz; 10 = stärkster vorstellbarer Schmerz)",
+                    "type": "integer",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "8.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                            "valueCodeableConcept": {
+                                "CodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                            "code": "slider"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-lowRangeLabel",
+                            "valueString": "0"
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-highRangeLabel",
+                            "valueString": "10"
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
+                            "valueInteger": 1
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/minValue",
+                            "valueInteger": 0
+                        },
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+                            "valueInteger": 10
+                        }
+                    ]
+                },
+                {
+                    "linkId": "8.3",
+                    "text": "Wie sind Ihre Schmerzen?",
+                    "type": "group",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "8.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "8.3.1",
+                            "text": "akut",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.3.2",
+                            "text": "chronisch",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "linkId": "8.4",
+                    "text": "Wo haben Sie diese Schmerzen?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "8.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "8.5",
+                    "text": "Welcher Art sind Ihre Schmerzen?",
+                    "type": "group",
+                    "enableWhen": [
+                        {
+                            "question": "8.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ],
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "8.5.1",
+                            "text": "Brennend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.2",
+                            "text": "Stechend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.3",
+                            "text": "Ziehend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.4",
+                            "text": "Bohrend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.5",
+                            "text": "Reißend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.6",
+                            "text": "Pochend",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.7",
+                            "text": "Dumpf",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        },
+                        {
+                            "linkId": "8.5.8",
+                            "text": "Andere",
+                            "type": "boolean",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "8.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ],
+                            "item": [
+                                {
+                                    "linkId": "8.5.8.1",
+                                    "text": "Welche?",
+                                    "type": "string",
+                                    "required": true,
+                                    "enableWhen": [
+                                        {
+                                            "question": "8.5.8",
+                                            "operator": "=",
+                                            "answerBoolean": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "9",
+            "text": "Allergien",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "9.1",
+                    "text": "Leiden Sie an Allergien? (Wenn ja, dann bringen Sie bitte Ihren Allergieausweis mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "linkId": "9.1.1",
+                            "text": "Welche?",
+                            "type": "string",
+                            "required": true,
+                            "enableWhen": [
+                                {
+                                    "question": "9.1",
+                                    "operator": "=",
+                                    "answerString": "01# Ja"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "10",
+            "text": "Behindertenausweis",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "10.1",
+                    "text": "Besitzen Sie einen Behindertenausweis? (Wenn ja, dann bringen Sie diesen bitte mit)",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "11",
+            "text": "Versorgung nach dem Krankenhausaufenthalt",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "11.1",
+                    "text": "Wie ist Ihre Versorgung nach dem stationären Aufenthalt?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Auf Hilfe angewiesen"
+                        },
+                        {
+                            "valueString": "02# Selbstständig"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "11.2",
+                    "text": "Hier können Sie eine Bemerkung hinterlassen.",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "11.2.1",
+                            "text": "Bemerkung",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "11.3",
+                    "text": "Beratung durch den Sozialdienst erwünscht?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
