@@ -1,7 +1,9 @@
 import json
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-
+import os 
+from pydantic import BaseModel
+import  pandas as pd
 
 # Install FastAPI and uvicorn if not already installed:
 # pip install fastapi uvicorn
@@ -11,6 +13,9 @@ with open('data.json', 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
+
+ANSWERS_FILE = 'answers.json'
+
 
 app = FastAPI(title="FHIR Questionnaire API")
 
@@ -66,6 +71,35 @@ async def get_item(link_id: str):
         raise HTTPException(status_code=404, detail="Item not found")
     return JSONResponse(content=item)
 
+if not os.path.exists(ANSWERS_FILE):
+    pd.DataFrame(columns=["question", "answer"]).to_json(ANSWERS_FILE, orient="records", indent=4)
+
+
+class Answer(BaseModel):
+    answer: str
+
+@app.post("/submit-answer")
+async def submit_answer(answer: Answer):
+    global questionaire_pos
+
+    # Get the current question's linkId and text
+    current_question = str(questionaire_pos)
+
+    # Load the current answers into a DataFrame
+    if os.path.exists(ANSWERS_FILE) and os.path.getsize(ANSWERS_FILE) > 0:
+        answers_df = pd.read_json(ANSWERS_FILE)
+    else:
+        answers_df = pd.DataFrame(columns=["question", "answer"])
+
+    # Create a DataFrame row with the current question and received answer
+    new_answer_df = pd.DataFrame([{"question": current_question, "answer": answer.answer}])
+    print (new_answer_df)
+    answers_df = pd.concat([answers_df, new_answer_df], ignore_index=True)
+
+    # Save updated DataFrame back to the JSON file
+    answers_df.to_json(ANSWERS_FILE, orient="records", indent=4)
+
+    return {"message": "Answer received and stored."}
 
 
 @app.get("/nextQuestion")
