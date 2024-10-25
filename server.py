@@ -19,7 +19,7 @@ TEST_NESTED = "data_test_nested.json"
 # TEST_DIR + TEST_BOOL
 
 # Read the JSON file
-with open(DATA_FILE, 'r') as file:
+with open(TEST_DIR + TEST_BOOL, 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
@@ -174,12 +174,21 @@ async def get_next_question(current_link_id: str = None):
                 
                 if enable_when:
                     for elem in enable_when:
+                        answer_string = None
+                        answer_boolean = None
                         question = elem["question"]
                         operator = elem["operator"]
-                        answer_string = elem["answerString"]
+                        if "answerString" in elem:
+                            answer_string = elem["answerString"]
+                        else:
+                            answer_boolean = elem["answerBoolean"]
 
                         # Check enableWhen condition
-                        if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
+                        if not check_item_value(
+                                item_id=question,
+                                operator=operator,
+                                answerString=answer_string,
+                                answerBoolean=answer_boolean):
                             continue  # Skip this item if the condition is not met
 
                     

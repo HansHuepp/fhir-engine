@@ -19,7 +19,7 @@ def get_item(item_id: str) -> str:
 
     return answers.get(item_id)
 
-def check_item_value(item_id: str, operator: str, answerString: str):
+def check_item_value(item_id: str, operator: str, answerString: str, answerBoolean: bool):
     """
     check if the given item satisfies the condition, e.g. = "Ja"
     """
@@ -33,6 +33,9 @@ def check_item_value(item_id: str, operator: str, answerString: str):
         return False
     
     if operator == "=":
-        return answer == answerString
+        if answerString is not None:
+            return answer == answerString
+        else:
+            return answer == answerBoolean
     else:
         raise ValueError("Invalid operator for non-numeric data; use '=' or '!=' only")
