@@ -129,7 +129,7 @@ async def get_next_question(current_link_id: str = None):
             raise HTTPException(status_code=404, detail="Current linkId not found")
 
     next_item = linkid_index.get(next_link_id)
-    if next_item.type != "group":
+    if next_item["type"] != "group":
         if next_item.get("enableWhen"):
             subitem = get_item(current_link_id)
             df = pd.json_normalize(subitem)
