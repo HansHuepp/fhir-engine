@@ -9,8 +9,17 @@ from logic_check import get_item, check_item_value
 # Install FastAPI and uvicorn if not already installed:
 # pip install fastapi uvicorn
 
+DATA_FILE = "data.json"
+# test directory
+TEST_DIR = "test_files/"
+TEST_BOOL = "data_test_boolean.json"
+TEST_MULTI = "data_test_multi_condition.json"
+TEST_NESTED = "data_test_nested.json"
+
+# TEST_DIR + TEST_BOOL
+
 # Read the JSON file
-with open('test_files/data_test_nested.json', 'r') as file:
+with open(DATA_FILE, 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0

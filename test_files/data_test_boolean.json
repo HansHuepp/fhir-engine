@@ -1,0 +1,55 @@
+{
+  "resourceType": "Questionnaire",
+  "url": "http://hl7.org/fhir/Questionnaire/Pflegeanamnese",
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:UMOID:",
+      "value": "Pflegeanamnese"
+    }
+  ],
+  "version": "1.2",
+  "title": "Pflegeanamnese",
+  "status": "draft",
+  "subjectType": ["Patient"],
+  "date": "2020-08-31",
+  "publisher": "IBM",
+  "purpose": "Abbildung der Fragen des Pflegeanamnesebogens des UMs",
+  "item": [
+    {
+      "linkId": "0",
+      "text": "Personalien",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+            "linkId": "2.1.1.2",
+            "text": "Hörschwäche",
+            "type": "boolean",
+            "required": true,
+            "enableWhen": [
+                {
+                    "question": "2.1",
+                    "operator": "=",
+                    "answerString": "01# Ja"
+                }
+            ],
+            "item": [
+                                        {
+                                            "linkId": "2.1.1.2.1",
+                                            "text": "Taub",
+                                            "type": "boolean",
+                                            "required": true,
+                                            "enableWhen": [
+                                                {
+                                                    "question": "2.1.1.2",
+                                                    "operator": "=",
+                                                    "answerBoolean": true
+                                                }
+                                            ]
+                                        }
+        }
+      ]
+    }
+  ]
+}
