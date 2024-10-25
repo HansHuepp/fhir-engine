@@ -11,7 +11,7 @@ app = FastAPI(title="FHIR Questionnaire Answers API")
 
 def get_item(item_id: str) -> str:
     # Read the JSON file
-    with open('answer.json', 'r') as file:
+    with open('answers.json', 'r') as file:
         answers = json.load(file)
     return answers.get(item_id)
 
@@ -20,7 +20,7 @@ def check_item_value(item_id: str, operator: str, answerString: str):
     check if the given item satisfies the condition, e.g. = "Ja"
     """
     # Read the JSON file
-    with open('answer.json', 'r') as file:
+    with open('answers.json', 'r') as file:
         answers = json.load(file)
     answer = answers[item_id]
      # Convert answer and value to boolean if they are "True" or "False", otherwise treat as strings
