@@ -202,7 +202,7 @@
                     "required": true
                 },
                 {
-                    "linkId": "3.1",
+                    "linkId": "3.2",
                     "text": "Sind Allergien bekannt?",
                     "type": "string",
                     "required": true
