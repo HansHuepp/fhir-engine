@@ -135,7 +135,6 @@ async def get_next_question(current_link_id: str = None):
         required_item = linkid_index.get(pending_required_question)
         if required_item:
             return JSONResponse(content={
-                "message": "This question is required and needs an answer before proceeding.",
                 "question": required_item
             })
 
@@ -190,7 +189,6 @@ async def get_next_question(current_link_id: str = None):
             # Set the pending required question and return it
             pending_required_question = next_link_id
             return JSONResponse(content={
-                "message": "This question is required and needs an answer before proceeding.",
                 "question": next_item
             })
 
