@@ -1,0 +1,92 @@
+{
+  "resourceType": "Questionnaire",
+  "url": "http://hl7.org/fhir/Questionnaire/Pflegeanamnese",
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:UMOID:",
+      "value": "Pflegeanamnese"
+    }
+  ],
+  "version": "1.2",
+  "title": "Pflegeanamnese",
+  "status": "draft",
+  "subjectType": ["Patient"],
+  "date": "2020-08-31",
+  "publisher": "IBM",
+  "purpose": "Abbildung der Fragen des Pflegeanamnesebogens des UMs",
+  "item": [
+    {
+      "linkId": "0",
+      "text": "Personalien",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "0.1",
+          "text": "Wie ist Ihr Familienstand?",
+          "type": "choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "01# Ledig"
+            },
+            {
+              "valueString": "02# Verheiratet"
+            },
+            {
+              "valueString": "03# Verwitwet"
+            },
+            {
+              "valueString": "04# Geschieden"
+            }
+          ]
+        },
+        {
+          "linkId": "0.2",
+          "text": "Wie war die häusliche Versorgung vor dem Krankenhausaufenthalt?",
+          "type": "choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueString": "01# Selbstständig"
+            },
+            {
+              "valueString": "02# Durch Angehörige"
+            },
+            {
+              "valueString": "03# Ohne festen Wohnsitz"
+            },
+            {
+              "valueString": "04# Pflegeheim"
+            },
+            {
+              "valueString": "05# Betreutes Wohnen"
+            },
+            {
+              "valueString": "06# Ambulanter Pflegedienst"
+            }
+          ]
+        },
+        {
+          "linkId": "0.3",
+          "text": "Wie lautet die Adresse des ambulanten Pflegedienstes?",
+          "type": "group",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "0.1",
+              "operator": "=",
+              "answerString": "02# Verheiratet"
+            },
+            {
+              "question": "0.2",
+              "operator": "=",
+              "answerString": "06# Ambulanter Pflegedienst"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
