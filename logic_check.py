@@ -27,21 +27,8 @@ def check_item_value(item_id: str, operator: str, answerString: str):
     with open('answers.json', 'r') as file:
         answers = json.load(file)
     answer = answers[item_id]
-     # Convert answer and value to boolean if they are "True" or "False", otherwise treat as strings
-    if answer in ["True", "False"]:
-        parsed_answer = answer == "True"
-    else:
-        parsed_answer = answer  # Keep as string
-
-    if answerString in ["True", "False"]:
-        parsed_value = answerString == "True"
-    else:
-        parsed_value = answerString  # Keep as string
-
-    # Perform comparison based on the operator
+    
     if operator == "=":
-        return parsed_answer == parsed_value
-    elif operator == "!=":
-        return parsed_answer != parsed_value
+        return answer == answerString
     else:
         raise ValueError("Invalid operator for non-numeric data; use '=' or '!=' only")
