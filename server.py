@@ -131,14 +131,14 @@ async def get_next_question(current_link_id: str = None):
     next_item = linkid_index.get(next_link_id)
     if next_item["type"] != "group":
         if next_item.get("enableWhen"):
-            subitem = get_item(current_link_id)
+            subitem = linkid_index.get(current_link_id)
             df = pd.json_normalize(subitem)
             if not df["enableWhen"].empty:
                 enable_when = df["enableWhen"].iloc[0]  # Take the first enableWhen condition if it exists
-            
+                print(enable_when)
             # Access properties of enableWhen correctly
-            operator = enable_when.get("operator")
-            answer_string = enable_when.get("answerString")
+            operator = enable_when["operator"]
+            answer_string = enable_when["answerString"]
             to_display = check_item_value(item_id=current_link_id, operator=operator, answerString=answer_string)
             print(to_display)
 
