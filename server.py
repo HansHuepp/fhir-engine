@@ -147,8 +147,8 @@ async def get_next_question(current_link_id: str = None):
             # Access properties of enableWhen correctly
 # '                operator = enable_when["operator"]
 #                 answer_string = enable_when["answerString"]'
-                    to_display = check_item_value(item_id=question, operator=operator, answerString=answer_string)
-                    print(to_display)
+                    if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
+                        get_next_question(current_link_id)
 
     if next_item is None:
         raise HTTPException(status_code=404, detail="Next item not found")
