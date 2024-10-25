@@ -141,12 +141,13 @@ async def get_next_question(current_link_id: str = None):
                     first_condition = enable_when[0]
                     
                     # Access properties of enableWhen correctly
+                    question = first_condition["question"]
                     operator = first_condition["operator"]
                     answer_string = first_condition["answerString"]
             # Access properties of enableWhen correctly
 # '                operator = enable_when["operator"]
 #                 answer_string = enable_when["answerString"]'
-                    to_display = check_item_value(item_id=current_link_id, operator=operator, answerString=answer_string)
+                    to_display = check_item_value(item_id=question, operator=operator, answerString=answer_string)
                     print(to_display)
 
     if next_item is None:
