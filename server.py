@@ -14,6 +14,8 @@ with open('data.json', 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
+pending_required_question = None
+
 
 ANSWERS_FILE = 'answers.json'
 
@@ -81,7 +83,7 @@ class Answer(BaseModel):
 
 @app.post("/submit-answer")
 async def submit_answer(answer: Answer):
-    global questionaire_pos
+    global questionaire_pos, pending_required_question
 
     # Get the current question's linkId
     current_question = str(questionaire_pos)
@@ -100,8 +102,12 @@ async def submit_answer(answer: Answer):
     with open(ANSWERS_FILE, 'w') as f:
         json.dump(answers_dict, f, indent=4)
 
-    return {"message": "Answer received and stored."}
+    # Check if the current question matches the pending required question
+    if pending_required_question == current_question:
+        # Reset pending_required_question as it has been answered
+        pending_required_question = None
 
+    return {"message": "Answer received and stored."}
 
 @app.get("/nextQuestion")
 async def get_next_question(current_link_id: str = None):
@@ -111,13 +117,22 @@ async def get_next_question(current_link_id: str = None):
     :param current_link_id: The current linkId (optional).
     :return: The next questionnaire item.
     """
-    global questionaire_pos
+    global questionaire_pos, pending_required_question
     current_link_id = str(questionaire_pos)
-    
+
+    # Check if there’s a pending required question that needs answering
+    if pending_required_question:
+        # Retrieve and return the pending required question
+        required_item = linkid_index.get(pending_required_question)
+        if required_item:
+            return JSONResponse(content={
+                "message": "This question is required and needs an answer before proceeding.",
+                "question": required_item
+            })
+
     while True:
         # Determine the next question in depth-first order
         if current_link_id is None:
-            # Start with the first item if no current linkId
             next_link_id = depth_first_order[0]
         else:
             try:
@@ -138,8 +153,12 @@ async def get_next_question(current_link_id: str = None):
         questionaire_pos = next_link_id
         current_link_id = next_link_id
 
-        # Skip items that are groups or do not meet the enableWhen condition
-        if next_item["type"] != "group" and next_item.get("enableWhen"):
+        # If the item is a group, return it directly without condition checks
+        if next_item["type"] == "group":
+            return JSONResponse(content=next_item)
+
+        # Skip items that do not meet the enableWhen condition if they are not a group
+        if next_item.get("enableWhen"):
             subitem = linkid_index.get(current_link_id)
             df = pd.json_normalize(subitem)
             if not df["enableWhen"].empty:
@@ -155,8 +174,74 @@ async def get_next_question(current_link_id: str = None):
                     if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
                         continue  # Skip this item if the condition is not met
 
-        # Return the next valid item if all conditions are met
+        # Check if the item is required
+        if next_item.get("required", False):
+            # Set the pending required question and return it
+            pending_required_question = next_link_id
+            return JSONResponse(content={
+                "message": "This question is required and needs an answer before proceeding.",
+                "question": next_item
+            })
+
+        # Reset pending_required_question and return the next valid item
+        pending_required_question = None
         return JSONResponse(content=next_item)
+
+
+# @app.get("/nextQuestion")
+# async def get_next_question(current_link_id: str = None):
+#     """
+#     Retrieves the next questionnaire item in depth-first order.
+
+#     :param current_link_id: The current linkId (optional).
+#     :return: The next questionnaire item.
+#     """
+#     global questionaire_pos
+#     current_link_id = str(questionaire_pos)
+    
+#     while True:
+#         # Determine the next question in depth-first order
+#         if current_link_id is None:
+#             # Start with the first item if no current linkId
+#             next_link_id = depth_first_order[0]
+#         else:
+#             try:
+#                 index = depth_first_order.index(current_link_id)
+#                 next_index = index + 1
+#                 if next_index >= len(depth_first_order):
+#                     return JSONResponse(content={"message": "No more items"})
+#                 next_link_id = depth_first_order[next_index]
+#             except ValueError:
+#                 raise HTTPException(status_code=404, detail="Current linkId not found")
+
+#         # Retrieve the next item
+#         next_item = linkid_index.get(next_link_id)
+#         if next_item is None:
+#             raise HTTPException(status_code=404, detail="Next item not found")
+
+#         # Update the global position
+#         questionaire_pos = next_link_id
+#         current_link_id = next_link_id
+
+#         # Skip items that are groups or do not meet the enableWhen condition
+#         if next_item["type"] != "group" and next_item.get("enableWhen"):
+#             subitem = linkid_index.get(current_link_id)
+#             df = pd.json_normalize(subitem)
+#             if not df["enableWhen"].empty:
+#                 enable_when = df["enableWhen"].iloc[0]
+                
+#                 if enable_when:
+#                     first_condition = enable_when[0]
+#                     question = first_condition["question"]
+#                     operator = first_condition["operator"]
+#                     answer_string = first_condition["answerString"]
+
+#                     # Check enableWhen condition
+#                     if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
+#                         continue  # Skip this item if the condition is not met
+
+#         # Return the next valid item if all conditions are met
+#         return JSONResponse(content=next_item)
 
 # To run the app, use the command:
 # uvicorn filename:app --reload
