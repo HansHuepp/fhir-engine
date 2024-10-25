@@ -26,7 +26,11 @@ def check_item_value(item_id: str, operator: str, answerString: str):
     # Read the JSON file
     with open('answers.json', 'r') as file:
         answers = json.load(file)
-    answer = answers[item_id]
+    try:
+        answer = answers[item_id]
+    except KeyError as e:
+        print(f"KeyError: {e}")
+        return False
     
     if operator == "=":
         return answer == answerString
