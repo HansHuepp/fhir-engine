@@ -129,6 +129,18 @@ async def get_next_question(current_link_id: str = None):
             raise HTTPException(status_code=404, detail="Current linkId not found")
 
     next_item = linkid_index.get(next_link_id)
+    if next_item.type != "group":
+        if next_item.get("enableWhen"):
+            subitem = get_item(current_link_id)
+            df = pd.json_normalize(subitem)
+            if not df["enableWhen"].empty:
+                enable_when = df["enableWhen"].iloc[0]  # Take the first enableWhen condition if it exists
+            
+            # Access properties of enableWhen correctly
+            operator = enable_when.get("operator")
+            answer_string = enable_when.get("answerString")
+            check_item_value(item_id=current_link_id, operator=operator, answerString=answer_string)
+
     if next_item is None:
         raise HTTPException(status_code=404, detail="Next item not found")
     questionaire_pos = next_link_id
