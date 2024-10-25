@@ -134,9 +134,9 @@ async def get_next_question(current_link_id: str = None):
         # Retrieve and return the pending required question
         required_item = linkid_index.get(pending_required_question)
         if required_item:
-            return JSONResponse(content={
-                "question": required_item
-            })
+            return JSONResponse(
+                required_item
+            )
 
     while True:
         # Determine the next question in depth-first order
@@ -188,9 +188,9 @@ async def get_next_question(current_link_id: str = None):
         if next_item.get("required", False):
             # Set the pending required question and return it
             pending_required_question = next_link_id
-            return JSONResponse(content={
-                "question": next_item
-            })
+            return JSONResponse(
+                next_item
+            )
 
         # Reset pending_required_question and return the next valid item
         pending_required_question = None
