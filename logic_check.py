@@ -13,7 +13,7 @@ app = FastAPI(title="FHIR Questionnaire Answers API")
 async def get_item(link_id: str) -> str:
     return answers("item_id")
 
-def get_item(linkid: str, operator: str, answerString: str):
+def check_item_value(linkid: str, operator: str, answerString: str):
     """
     check if the given item satisfies the condition, e.g. = "Ja"
     """
