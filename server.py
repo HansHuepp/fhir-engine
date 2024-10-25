@@ -82,24 +82,25 @@ class Answer(BaseModel):
 async def submit_answer(answer: Answer):
     global questionaire_pos
 
-    # Get the current question's linkId and text
+    # Get the current question's linkId
     current_question = str(questionaire_pos)
 
-    # Load the current answers into a DataFrame
+    # Load the existing answers into a dictionary if the file exists and is not empty
     if os.path.exists(ANSWERS_FILE) and os.path.getsize(ANSWERS_FILE) > 0:
-        answers_df = pd.read_json(ANSWERS_FILE)
+        with open(ANSWERS_FILE, 'r') as f:
+            answers_dict = json.load(f)
     else:
-        answers_df = pd.DataFrame(columns=["question", "answer"])
+        answers_dict = {}
 
-    # Create a DataFrame row with the current question and received answer
-    new_answer_df = pd.DataFrame([{"question": current_question, "answer": answer.answer}])
-    print (new_answer_df)
-    answers_df = pd.concat([answers_df, new_answer_df], ignore_index=True)
+    # Add the new answer to the dictionary
+    answers_dict[current_question] = answer.answer
 
-    # Save updated DataFrame back to the JSON file
-    answers_df.to_json(ANSWERS_FILE, orient="records", indent=4)
+    # Save updated dictionary back to the JSON file
+    with open(ANSWERS_FILE, 'w') as f:
+        json.dump(answers_dict, f, indent=4)
 
     return {"message": "Answer received and stored."}
+
 
 
 @app.get("/nextQuestion")
