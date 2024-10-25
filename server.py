@@ -10,7 +10,7 @@ from logic_check import get_item, check_item_value
 # pip install fastapi uvicorn
 
 # Read the JSON file
-with open('data_test.json', 'r') as file:
+with open('test_files/data_test_nested.json', 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
