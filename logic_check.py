@@ -9,15 +9,20 @@ with open('answer.json', 'r') as file:
 app = FastAPI(title="FHIR Questionnaire Answers API")
 
 
-@app.get("item/{item_id}")
-async def get_item(link_id: str) -> str:
-    return answers("item_id")
+def get_item(item_id: str) -> str:
+    # Read the JSON file
+    with open('answer.json', 'r') as file:
+        answers = json.load(file)
+    return answers.get(item_id)
 
-def check_item_value(linkid: str, operator: str, answerString: str):
+def check_item_value(item_id: str, operator: str, answerString: str):
     """
     check if the given item satisfies the condition, e.g. = "Ja"
     """
-    answer = answers[linkid]
+    # Read the JSON file
+    with open('answer.json', 'r') as file:
+        answers = json.load(file)
+    answer = answers[item_id]
      # Convert answer and value to boolean if they are "True" or "False", otherwise treat as strings
     if answer in ["True", "False"]:
         parsed_answer = answer == "True"

@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import os 
 from pydantic import BaseModel
 import  pandas as pd
+from logic_check import get_item, check_item_value
 
 # Install FastAPI and uvicorn if not already installed:
 # pip install fastapi uvicorn
