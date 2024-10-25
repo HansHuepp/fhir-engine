@@ -2,12 +2,15 @@ import json
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
+
 # Install FastAPI and uvicorn if not already installed:
 # pip install fastapi uvicorn
 
 # Read the JSON file
 with open('data.json', 'r') as file:
     questionnaire = json.load(file)
+
+questionaire_pos = 0
 
 app = FastAPI(title="FHIR Questionnaire API")
 
@@ -63,6 +66,8 @@ async def get_item(link_id: str):
         raise HTTPException(status_code=404, detail="Item not found")
     return JSONResponse(content=item)
 
+
+
 @app.get("/nextQuestion")
 async def get_next_question(current_link_id: str = None):
     """
@@ -71,6 +76,9 @@ async def get_next_question(current_link_id: str = None):
     :param current_link_id: The current linkId (optional).
     :return: The next questionnaire item.
     """
+    global questionaire_pos
+    current_link_id = str(questionaire_pos)
+    
     if current_link_id is None:
         # Return the first item
         next_link_id = depth_first_order[0]
@@ -87,6 +95,7 @@ async def get_next_question(current_link_id: str = None):
     next_item = linkid_index.get(next_link_id)
     if next_item is None:
         raise HTTPException(status_code=404, detail="Next item not found")
+    questionaire_pos = next_link_id
     return JSONResponse(content=next_item)
 
 # To run the app, use the command:
