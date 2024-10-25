@@ -10,7 +10,7 @@ from logic_check import get_item, check_item_value
 # pip install fastapi uvicorn
 
 # Read the JSON file
-with open('data.json', 'r') as file:
+with open('data_test.json', 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
@@ -165,14 +165,16 @@ async def get_next_question(current_link_id: str = None):
                 enable_when = df["enableWhen"].iloc[0]
                 
                 if enable_when:
-                    first_condition = enable_when[0]
-                    question = first_condition["question"]
-                    operator = first_condition["operator"]
-                    answer_string = first_condition["answerString"]
+                    for elem in enable_when:
+                        question = elem["question"]
+                        operator = elem["operator"]
+                        answer_string = elem["answerString"]
 
-                    # Check enableWhen condition
-                    if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
-                        continue  # Skip this item if the condition is not met
+                        # Check enableWhen condition
+                        if not check_item_value(item_id=question, operator=operator, answerString=answer_string):
+                            continue  # Skip this item if the condition is not met
+
+                    
 
         # Check if the item is required
         if next_item.get("required", False):
