@@ -15,11 +15,12 @@ TEST_DIR = "test_files/"
 TEST_BOOL = "data_test_boolean.json"
 TEST_MULTI = "data_test_multi_condition.json"
 TEST_NESTED = "data_test_nested.json"
+TEST_NEW = "data_test_NEW.json"
 
 # TEST_DIR + TEST_BOOL
 
 # Read the JSON file
-with open(TEST_DIR + TEST_BOOL, 'r') as file:
+with open(TEST_DIR + TEST_NEW, 'r') as file:
     questionnaire = json.load(file)
 
 questionaire_pos = 0
@@ -162,7 +163,7 @@ async def get_next_question(current_link_id: str = None):
         current_link_id = next_link_id
 
         # If the item is a group, return it directly without condition checks
-        if next_item["type"] == "group":
+        if next_item["type"] == "group" and next_item["required"] is False:
             return JSONResponse(content=next_item)
 
         # Skip items that do not meet the enableWhen condition if they are not a group

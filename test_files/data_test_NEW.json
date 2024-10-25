@@ -1,0 +1,354 @@
+{
+    "resourceType": "Questionnaire",
+    "url": "http://hl7.org/fhir/Questionnaire/Pflegeanamnese",
+    "identifier": [
+        {
+            "use": "official",
+            "system": "urn:UMOID:",
+            "value": "Pflegeanamnese"
+        }
+    ],
+    "version": "1.2",
+    "title": "Pflegeanamnese",
+    "status": "draft",
+    "subjectType": ["Patient"],
+    "date": "2020-08-31",
+    "publisher": "IBM",
+    "purpose": "Abbildung der Fragen des Pflegeanamnesebogens des UMs",
+    "item": [
+        {
+            "linkId": "0",
+            "text": "Versicherungsstatus",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "0.1",
+                    "text": "Sind sie gesetzlich Versichert?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.2",
+                    "text": "Haben Sie Zusatzversicherungen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "0.3",
+                    "text": "Welche Zusatzversicherungen haben Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "0.2",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "1",
+            "text": "Medizinische Vorgeschichte",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "1.1",
+                    "text": "Bei welchem Hausarzt waren Sie zuvor?",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "1.2",
+                    "text": "Wie oft treiben Sie Sport?",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "1.3",
+                    "text": "Sind Sie schwanger?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "2",
+            "text": "Konsumverhalten",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "2.1",
+                    "text": "Rauchen Sie?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.2",
+                    "text": "Wie viel rauchen Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "2.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.3",
+                    "text": "Trinken Sie regelmäßig viel Alkohol?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.4",
+                    "text": "Wie viel Alkohol trinken Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "2.3",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.5",
+                    "text": "Nehmen Sie nicht verkehrsfähige (illegale) Rausch- oder Beteubungsmittel?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.6",
+                    "text": "Was und in welcher Menge konsumieren Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "2.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Konsumverhalten",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+
+                    "linkId": "3.1",
+                    "text": "Welche Medikamente nehmen Sie regelmäßig oder gelegentlich ein",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "3.1",
+                    "text": "Sind Allergien bekannt?",
+                    "type": "string",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Behinderungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "4.1",
+                    "text": "Liegt bei Ihnen eine Schwerbehinderung vor?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.2",
+                    "text": "Welche Schwerbehinderung?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "4.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Herz-Kreislauf-Erkrankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "5.1",
+                    "text": "Welche Herz-Kreislauf-Erkrankungen haben Sie?",
+                    "type": "group",
+                    "required": true,
+                    "item": [
+                        {
+                            "linkId": "5.1.1",
+                            "text": "Hoher Blutdruck",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "5.1.2",
+                            "text": "Schlaganfall",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "5.1.3",
+                            "text": "Herzinfakt",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "5.1.4",
+                            "text": "Stent",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        {
+                            "linkId": "5.1.5",
+                            "text": "Bypass",
+                            "type": "boolean",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "6",
+            "text": "Stoffwechselerkrankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "6.1",
+                    "text": "Leiden Sie an Diabetes melitus?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Typ 1"
+                        },
+                        {
+                            "valueString": "02# Typ 2"
+                        },
+                        {
+                            "valueString": "03# Nein"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "7",
+            "text": "Weitere Erkankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "4.1",
+                    "text": "Liegt bei Ihnen eine Schwerbehinderung vor?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "4.2",
+                    "text": "Welche Schwerbehinderung?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "4.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
