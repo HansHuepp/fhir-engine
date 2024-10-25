@@ -136,11 +136,18 @@ async def get_next_question(current_link_id: str = None):
             if not df["enableWhen"].empty:
                 enable_when = df["enableWhen"].iloc[0]  # Take the first enableWhen condition if it exists
                 print(enable_when)
+                
+                if enable_when:  # Check that the list is not empty
+                    first_condition = enable_when[0]
+                    
+                    # Access properties of enableWhen correctly
+                    operator = first_condition["operator"]
+                    answer_string = first_condition["answerString"]
             # Access properties of enableWhen correctly
-            operator = enable_when["operator"]
-            answer_string = enable_when["answerString"]
-            to_display = check_item_value(item_id=current_link_id, operator=operator, answerString=answer_string)
-            print(to_display)
+# '                operator = enable_when["operator"]
+#                 answer_string = enable_when["answerString"]'
+                    to_display = check_item_value(item_id=current_link_id, operator=operator, answerString=answer_string)
+                    print(to_display)
 
     if next_item is None:
         raise HTTPException(status_code=404, detail="Next item not found")
