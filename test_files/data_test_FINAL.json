@@ -1,0 +1,385 @@
+{
+    "resourceType": "Questionnaire",
+    "url": "http://hl7.org/fhir/Questionnaire/Pflegeanamnese",
+    "identifier": [
+        {
+            "use": "official",
+            "system": "urn:UMOID:",
+            "value": "Pflegeanamnese"
+        }
+    ],
+    "version": "1.2",
+    "title": "Pflegeanamnese",
+    "status": "draft",
+    "subjectType": ["Patient"],
+    "date": "2020-08-31",
+    "publisher": "IBM",
+    "purpose": "Abbildung der Fragen des Pflegeanamnesebogens des UMs",
+    "item": [
+        {
+            "linkId": "0",
+            "text": "Patienteninformationen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "0.1",
+                    "text": "Name",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "0.2",
+                    "text": "Adresse",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "0.3",
+                    "text": "Geburtsdatum",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "0.4",
+                    "text": "Geschlecht",
+                    "type": "string",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "1",
+            "text": "Versicherungsstatus",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "1.1",
+                    "text": "Wie sind Sie versichert?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# gesetzlich"
+                        },
+                        {
+                            "valueString": "02# privat"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "2",
+            "text": "Medizinische Vorgeschichte",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "2.1",
+                    "text": "Bei welchem Hausarzt waren Sie zuvor?",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "2.2",
+                    "text": "Wie oft treiben Sie Sport?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# nie"
+                        },
+                        {
+                            "valueString": "02# selten"
+                        },
+                        {
+                            "valueString": "03# 0,5h pro Woche"
+                        },
+                        {
+                            "valueString": "04# 1-2h pro Woche"
+                        },
+                        {
+                            "valueString": "03# über 2h  pro Woche"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "2.3",
+                    "text": "Sind Sie schwanger?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "3",
+            "text": "Konsumverhalten",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "3.1",
+                    "text": "Rauchen Sie?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "3.2",
+                    "text": "Wie viel rauchen Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "3.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "3.3",
+                    "text": "Trinken Sie regelmäßig viel Alkohol?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "3.4",
+                    "text": "Wie viel Alkohol trinken Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "3.3",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "3.5",
+                    "text": "Nehmen Sie nicht verkehrsfähige (illegale) Rausch- oder Betäubungsmittel?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "3.6",
+                    "text": "Was und in welcher Menge konsumieren Sie?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "3.5",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "4",
+            "text": "Medikamente und Allergien",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+
+                    "linkId": "4.1",
+                    "text": "Welche Medikamente nehmen Sie regelmäßig oder gelegentlich ein",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "linkId": "4.2",
+                    "text": "Sind Allergien bekannt?",
+                    "type": "string",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "5",
+            "text": "Herz-Kreislauf-Erkrankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "5.1",
+                    "text": "Welche Herz-Kreislauf-Erkrankungen liegen vor?",
+                    "type": "multichoice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Hoher Bluthochdruck"
+                        },
+                        {
+                            "valueString": "02# Schlaganfall"
+                        },
+                        {
+                            "valueString": "03# Herzinfakt"
+                        },
+                        {
+                            "valueString": "04# Stent"
+                        },
+                        {
+                            "valueString": "05# Bypass"
+                        },
+                        {
+                            "valueString": "06# keine"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "6",
+            "text": "Stoffwechselerkrankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "6.1",
+                    "text": "Leiden Sie an Diabetes melitus?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Typ 1"
+                        },
+                        {
+                            "valueString": "02# Typ 2"
+                        },
+                        {
+                            "valueString": "03# Nein"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "7",
+            "text": "Weitere Erkankungen",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "7.1",
+                    "text": "Liegen weitere Erkrankungen vor?",
+                    "type": "string",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "linkId": "8",
+            "text": "Familienanamnese",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "8.1",
+                    "text": "Sind in ihrer Familie weitere Erkrankungen bekannt?",
+                    "type": "multichoice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Herzinfakt"
+                        },
+                        {
+                            "valueString": "02# Diabetes"
+                        },
+                        {
+                            "valueString": "03# Bluthochdruch"
+                        },
+                        {
+                            "valueString": "04# Schlaganfall"
+                        },
+                        {
+                            "valueString": "05# Demenz"
+                        },
+                        {
+                            "valueString": "06# Krebserkrankungen"
+                        }
+                    ]
+                }
+            ]
+        }
+        ,
+        {
+            "linkId": "9",
+            "text": "Aktuelle Beschwerden",
+            "type": "group",
+            "required": true,
+            "item": [
+                {
+                    "linkId": "9.1",
+                    "text": "Haben Sie Schmerzen?",
+                    "type": "choice",
+                    "required": true,
+                    "answerOption": [
+                        {
+                            "valueString": "01# Ja"
+                        },
+                        {
+                            "valueString": "02# Nein"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "9.2",
+                    "text": "Wo brennts denn?",
+                    "type": "string",
+                    "required": true,
+                    "enableWhen": [
+                        {
+                            "question": "9.1",
+                            "operator": "=",
+                            "answerString": "01# Ja"
+                        }
+                    ]
+                }
+            ]
+        }
+        ,
+        {
+            "linkId": "10",
+            "text": "Vielen Dank für das Ausfüllen des Fragebogens! Einen schönen Samstag liebe Hacker!",
+            "type": "group",
+            "required": true
+        }
+    ]
+}

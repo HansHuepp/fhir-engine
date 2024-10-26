@@ -23,31 +23,25 @@
       "required": true,
       "item": [
         {
-            "linkId": "2.1.1.2",
+            "linkId": "0.1",
             "text": "Hörschwäche",
             "type": "boolean",
             "required": true,
-            "enableWhen": [
-                {
-                    "question": "2.1",
-                    "operator": "=",
-                    "answerString": "01# Ja"
-                }
-            ],
             "item": [
-                                        {
-                                            "linkId": "2.1.1.2.1",
-                                            "text": "Taub",
-                                            "type": "boolean",
-                                            "required": true,
-                                            "enableWhen": [
-                                                {
-                                                    "question": "2.1.1.2",
-                                                    "operator": "=",
-                                                    "answerBoolean": true
-                                                }
-                                            ]
-                                        }
+                 {
+                      "linkId": "0.1.1",
+                      "text": "Taub",
+                      "type": "boolean",
+                      "required": true,
+                      "enableWhen": [
+                           {
+                                 "question": "0.1",
+                                 "operator": "=",
+                                 "answerBoolean": true
+                           }
+                      ]
+                 }
+            ]
         }
       ]
     }
