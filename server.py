@@ -266,6 +266,7 @@ async def get_next_question(session_id: str, current_link_id: str = None):
             return JSONResponse(content=next_item)
 
         # Skip items that do not meet the enableWhen condition if they are not a group
+        enable_when_temp = False
         if next_item.get("enableWhen"):
             subitem = linkid_index.get(current_link_id)
             df = pd.json_normalize(subitem)
@@ -274,24 +275,21 @@ async def get_next_question(session_id: str, current_link_id: str = None):
 
                 if enable_when:
                     for elem in enable_when:
-                        answer_string = None
-                        answer_boolean = None
                         question = elem["question"]
                         operator = elem["operator"]
-                        if "answerString" in elem:
-                            answer_string = elem["answerString"]
-                        else:
-                            answer_boolean = elem["answerBoolean"]
+                        answer_string = elem["answerString"]
 
                         # Check enableWhen condition using session-specific answers
                         if not check_item_value(
                                 item_id=question,
                                 operator=operator,
                                 answerString=answer_string,
-                                answerBoolean=answer_boolean,
                                 answers=answers_dict):
+                            enable_when_temp = True
                             continue  # Skip this item if the condition is not met
 
+        if enable_when_temp:
+            continue
         # Check if the item is required
         if next_item.get("required", False):
             # Set the pending required question and return it
