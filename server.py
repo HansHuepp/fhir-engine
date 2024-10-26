@@ -3,10 +3,8 @@ import os
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-import pandas as pd
-
-# Assume the logic_check module has been appropriately modified to accept answers_dict
-# from logic_check import get_item, check_item_value
+import  pandas as pd
+from logic_check import get_item, check_item_value, find_linkid
 
 # Install FastAPI and uvicorn if not already installed:
 # pip install fastapi uvicorn
@@ -225,9 +223,10 @@ async def get_next_question(session_id: str, current_link_id: str = None):
     pending_required_question = session_data.get('pending_required_question')
 
     current_link_id = str(questionaire_pos)
-
-    # Load the existing answers
     answers_dict = load_answers(session_id)
+    if answers_dict:
+        # Sort and get the last key, then increment it
+        last_id = sorted(answers_dict.keys())[-1]
 
     # Check if there’s a pending required question that needs answering
     if pending_required_question:
@@ -258,6 +257,8 @@ async def get_next_question(session_id: str, current_link_id: str = None):
         # Update the session's position
         session_data['questionaire_pos'] = next_link_id
         current_link_id = next_link_id
+        if current_link_id <= last_id:
+            continue
 
         # If the item is a group, return it directly without condition checks
         if next_item["type"] == "group":
