@@ -104,20 +104,6 @@
                             "valueString": "03# über 2h  pro Woche"
                         }
                     ]
-                },
-                {
-                    "linkId": "2.3",
-                    "text": "Sind Sie schwanger?",
-                    "type": "choice",
-                    "required": true,
-                    "answerOption": [
-                        {
-                            "valueString": "01# Ja"
-                        },
-                        {
-                            "valueString": "02# Nein"
-                        }
-                    ]
                 }
             ]
         },
