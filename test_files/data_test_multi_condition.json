@@ -85,6 +85,12 @@
               "answerString": "06# Ambulanter Pflegedienst"
             }
           ]
+        },
+        {
+          "linkId": "0.4",
+          "text": "Was ist ihr Name?",
+          "type": "string",
+          "required": false
         }
       ]
     }
