@@ -15,13 +15,14 @@ TEST_BOOL = "data_test_boolean.json"
 TEST_MULTI = "data_test_multi_condition.json"
 TEST_NESTED = "data_test_nested.json"
 TEST_NEW = "data_test_NEW.json"
+TEST_FINAL = "data_test_FINAL.json"
 
 SESSIONS_DIR = 'sessions/'
 if not os.path.exists(SESSIONS_DIR):
     os.makedirs(SESSIONS_DIR)
 
 # Read the JSON file
-with open(TEST_DIR + TEST_NEW, 'r') as file:
+with open(TEST_DIR + TEST_FINAL, 'r') as file:
     questionnaire = json.load(file)
 
 app = FastAPI(title="FHIR Questionnaire API")
@@ -224,9 +225,9 @@ async def get_next_question(session_id: str, current_link_id: str = None):
 
     current_link_id = str(questionaire_pos)
     answers_dict = load_answers(session_id)
-    if answers_dict:
+    #if answers_dict:
         # Sort and get the last key, then increment it
-        last_id = sorted(answers_dict.keys())[-1]
+       # last_id = sorted(answers_dict.keys())[-1]
 
     # Check if there’s a pending required question that needs answering
     if pending_required_question:
@@ -257,8 +258,8 @@ async def get_next_question(session_id: str, current_link_id: str = None):
         # Update the session's position
         session_data['questionaire_pos'] = next_link_id
         current_link_id = next_link_id
-        if current_link_id <= last_id:
-            continue
+        # if current_link_id <= last_id:
+        #    continue
 
         # If the item is a group, return it directly without condition checks
         if next_item["type"] == "group":
