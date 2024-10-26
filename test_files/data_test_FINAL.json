@@ -340,13 +340,13 @@
         }
         ,
         {
-            "linkId": "8",
+            "linkId": "9",
             "text": "Aktuelle Beschwerden",
             "type": "group",
             "required": true,
             "item": [
                 {
-                    "linkId": "8.1",
+                    "linkId": "9.1",
                     "text": "Haben Sie Schmerzen?",
                     "type": "choice",
                     "required": true,
@@ -360,13 +360,13 @@
                     ]
                 },
                 {
-                    "linkId": "8.2",
+                    "linkId": "9.2",
                     "text": "Wo brennts denn?",
                     "type": "string",
                     "required": true,
                     "enableWhen": [
                         {
-                            "question": "8.1",
+                            "question": "9.1",
                             "operator": "=",
                             "answerString": "01# Ja"
                         }
