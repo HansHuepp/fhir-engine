@@ -183,7 +183,7 @@
                 },
                 {
                     "linkId": "3.5",
-                    "text": "Nehmen Sie nicht verkehrsfähige (illegale) Rausch- oder Beteubungsmittel?",
+                    "text": "Nehmen Sie nicht verkehrsfähige (illegale) Rausch- oder Betäubungsmittel?",
                     "type": "choice",
                     "required": true,
                     "answerOption": [
@@ -244,7 +244,7 @@
                     "required": true,
                     "answerOption": [
                         {
-                            "valueString": "01# Hoher Blutdruch"
+                            "valueString": "01# Hoher Bluthochdruck"
                         },
                         {
                             "valueString": "02# Schlaganfall"
@@ -373,6 +373,13 @@
                     ]
                 }
             ]
+        }
+        ,
+        {
+            "linkId": "10",
+            "text": "Vielen Dank für das Ausfüllen des Fragebogens! Einen schönen Samstag liebe Hacker!",
+            "type": "group",
+            "required": true
         }
     ]
 }
